@@ -14,7 +14,7 @@ class SecondActivity : AppCompatActivity() {
 
         btnToast = findViewById(R.id.btnToast)
         btnToast.setOnClickListener {
-            Toast.makeText(this, "Message!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, intent.getStringExtra("EXTRA_STRING"), Toast.LENGTH_SHORT).show()
         }
     }
 }

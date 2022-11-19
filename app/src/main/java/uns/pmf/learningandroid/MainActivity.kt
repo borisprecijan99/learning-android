@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         btnSecondActivity = findViewById(R.id.btnOpenSecondActivity)
         btnSecondActivity?.setOnClickListener {
             val secondActivityIntent = Intent(this, SecondActivity::class.java)
+            secondActivityIntent.putExtra("EXTRA_STRING", "Message from MainActivity")
             startActivity(secondActivityIntent)
         }
     }
