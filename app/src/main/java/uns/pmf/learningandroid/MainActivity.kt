@@ -1,21 +1,21 @@
 package uns.pmf.learningandroid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
+import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var tvText: TextView
+    private var btnSecondActivity: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        tvText = findViewById(R.id.tvText)
-    }
-
-    fun onButtonClick(view: View) {
-        tvText.text = "Button is clicked"
+        btnSecondActivity = findViewById(R.id.btnOpenSecondActivity)
+        btnSecondActivity?.setOnClickListener {
+            val secondActivityIntent = Intent(this, SecondActivity::class.java)
+            startActivity(secondActivityIntent)
+        }
     }
 }
