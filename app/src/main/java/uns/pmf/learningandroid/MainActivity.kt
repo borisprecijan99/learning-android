@@ -3,17 +3,18 @@ package uns.pmf.learningandroid
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import uns.pmf.learningandroid.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private var btnSecondActivity: Button? = null
+    private lateinit var activityMainBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        btnSecondActivity = findViewById(R.id.btnOpenSecondActivity)
-        btnSecondActivity?.setOnClickListener {
+        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(activityMainBinding.root)
+
+        activityMainBinding.btnOpenSecondActivity.setOnClickListener {
             val secondActivityIntent = Intent(this, SecondActivity::class.java)
             secondActivityIntent.putExtra("EXTRA_STRING", "Message from MainActivity")
             startActivity(secondActivityIntent)

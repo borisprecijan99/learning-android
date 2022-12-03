@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
+import uns.pmf.learningandroid.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
     private lateinit var btnRegister: Button
@@ -14,17 +15,20 @@ class SecondActivity : AppCompatActivity() {
     private lateinit var etUsername: EditText
     private lateinit var etPassword: EditText
     private lateinit var rgGender: RadioGroup
+    private lateinit var activitySecondBinding: ActivitySecondBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second)
 
-        btnRegister = findViewById(R.id.btnRegister)
-        etFirstName = findViewById(R.id.etFirstName)
-        etLastName = findViewById(R.id.etLastName)
-        etUsername = findViewById(R.id.etUsername)
-        etPassword = findViewById(R.id.etPassword)
-        rgGender = findViewById(R.id.rgGender)
+        activitySecondBinding = ActivitySecondBinding.inflate(layoutInflater)
+        setContentView(activitySecondBinding.root)
+
+        btnRegister = activitySecondBinding.btnRegister
+        etFirstName = activitySecondBinding.etFirstName
+        etLastName = activitySecondBinding.etLastName
+        etUsername = activitySecondBinding.etUsername
+        etPassword = activitySecondBinding.etPassword
+        rgGender = activitySecondBinding.rgGender
 
         btnRegister.setOnClickListener {
             val gender = if (rgGender.checkedRadioButtonId == R.id.rbFemale) "female" else "male"

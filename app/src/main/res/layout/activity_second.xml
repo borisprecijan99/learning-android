@@ -97,4 +97,29 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <CheckBox
+        android:id="@+id/cb1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checkbox 1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnRegister"/>
+
+    <CheckBox
+        android:id="@+id/cb2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checkbox 2"
+        app:layout_constraintStart_toEndOf="@id/cb1"
+        app:layout_constraintTop_toTopOf="@id/cb1"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@id/cb1"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
