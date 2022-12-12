@@ -19,13 +19,22 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/account_image"
+        app:layout_constraintTop_toBottomOf="@id/tvText2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
     <EditText
         android:id="@+id/etFirstName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="First name"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/tvText2"
+        app:layout_constraintTop_toBottomOf="@id/image"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/etLastName"/>
 
@@ -35,7 +44,7 @@
         android:layout_height="wrap_content"
         android:hint="Last name"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/tvText2"
+        app:layout_constraintTop_toBottomOf="@id/image"
         app:layout_constraintLeft_toRightOf="@id/etFirstName"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -96,30 +105,5 @@
         app:layout_constraintTop_toBottomOf="@id/rgGender"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-
-    <CheckBox
-        android:id="@+id/cb1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Checkbox 1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnRegister"/>
-
-    <CheckBox
-        android:id="@+id/cb2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Checkbox 2"
-        app:layout_constraintStart_toEndOf="@id/cb1"
-        app:layout_constraintTop_toTopOf="@id/cb1"/>
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/sw1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch"
-        android:checked="true"
-        app:layout_constraintTop_toBottomOf="@id/cb1"
-        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
