@@ -97,12 +97,33 @@
 
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/tvDateOfBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date of birth"
+        android:textSize="20sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/rgGender"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/btnSelectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select date"
+        android:layout_marginStart="12dp"
+        app:layout_constraintLeft_toRightOf="@id/tvDateOfBirth"
+        app:layout_constraintTop_toTopOf="@id/tvDateOfBirth"
+        app:layout_constraintBottom_toBottomOf="@id/tvDateOfBirth"/>
+
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
-        app:layout_constraintTop_toBottomOf="@id/rgGender"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tvDateOfBirth"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
