@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="user"
+            type="uns.pmf.learningandroid.User" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -34,6 +42,7 @@
         android:layout_height="wrap_content"
         android:hint="First name"
         android:inputType="text"
+        android:text="@{user.firstName}"
         app:layout_constraintTop_toBottomOf="@id/image"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/etLastName"/>
@@ -44,6 +53,7 @@
         android:layout_height="wrap_content"
         android:hint="Last name"
         android:inputType="text"
+        android:text="@{user.lastName}"
         app:layout_constraintTop_toBottomOf="@id/image"
         app:layout_constraintLeft_toRightOf="@id/etFirstName"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -53,6 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
+        android:text="@{user.userName}"
         android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/etFirstName"/>
 
@@ -61,6 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:text="@{user.password}"
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/etUsername"/>
 
@@ -88,11 +100,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Female"
-            android:checked="true"/>
+            android:checked="@{user.isMale}"/>
         <RadioButton
             android:id="@+id/rbMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="@{user.isMale}"
             android:text="Male" />
 
     </RadioGroup>
@@ -111,7 +124,7 @@
         android:id="@+id/btnSelectDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select date"
+        android:text="@{user.dateOfBirth}"
         android:layout_marginStart="12dp"
         app:layout_constraintLeft_toRightOf="@id/tvDateOfBirth"
         app:layout_constraintTop_toTopOf="@id/tvDateOfBirth"
@@ -128,3 +141,4 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
