@@ -6,6 +6,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textViewCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="64sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnOpenSecondActivity"/>
+
     <Button
         android:id="@+id/btnOpenSecondActivity"
         android:layout_width="wrap_content"
@@ -15,13 +27,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btnOpenThirdActivity" />
+        app:layout_constraintRight_toLeftOf="@id/btnIncreaseCounter" />
 
     <Button
-        android:id="@+id/btnOpenThirdActivity"
+        android:id="@+id/btnIncreaseCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open third activity"
+        android:text="Increase counter"
         android:textAllCaps="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
