@@ -20,17 +20,17 @@ class MainActivity : AppCompatActivity() {
         viewModelFactory = MainActivityViewModelFactory(2022)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
 
-        activityMainBinding.textViewCounter.text = viewModel.getCounter().toString()
-
         activityMainBinding.btnOpenSecondActivity.setOnClickListener {
             val secondActivityIntent = Intent(this, SecondActivity::class.java)
-            secondActivityIntent.putExtra("EXTRA_STRING", "Message from MainActivity")
             startActivity(secondActivityIntent)
         }
 
         activityMainBinding.btnIncreaseCounter.setOnClickListener {
-            val newValue = viewModel.increaseCounter().toString()
-            activityMainBinding.textViewCounter.text = newValue
+            viewModel.increaseCounter()
+        }
+
+        viewModel.counter.observe(this) { newCounter ->
+            activityMainBinding.textViewCounter.text = newCounter.toString()
         }
     }
 }

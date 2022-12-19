@@ -1,19 +1,18 @@
 package uns.pmf.learningandroid
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel(initialCounter: Int) : ViewModel() {
-    private var counter: Int = 0
+    private val _counter: MutableLiveData<Int> = MutableLiveData()
+    val counter: LiveData<Int> get() = _counter
 
     init {
-        counter = initialCounter
+        _counter.value = initialCounter
     }
 
-    fun getCounter(): Int {
-        return counter
-    }
-
-    fun increaseCounter(): Int {
-        return ++counter
+    fun increaseCounter(): Unit {
+        _counter.value = _counter.value?.plus(1)
     }
 }
