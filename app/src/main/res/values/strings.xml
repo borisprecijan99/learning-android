@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">Learning Android</string>
-    <string name="button_text">Open second activity</string>
 </resources>
