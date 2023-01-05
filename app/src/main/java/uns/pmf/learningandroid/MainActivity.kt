@@ -3,7 +3,10 @@ package uns.pmf.learningandroid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import uns.pmf.learningandroid.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,21 +16,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val fruits = listOf(
-            "Apple",
-            "Watermelon",
-            "Banana",
-            "Lemon",
-            "Orange",
-            "Mango",
-            "Avocado",
-            "Grapefruit",
-            "Kiwi",
-            "Peach",
-            "Pineapple"
-        )
 
-        activityMainBinding.recyclerView.layoutManager = LinearLayoutManager(this)
-        activityMainBinding.recyclerView.adapter = MyRecyclerViewAdapter(fruits)
+        activityMainBinding.counter = 0
+
+        activityMainBinding.downloadDataButton.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                downloadData()
+            }
+        }
+
+        activityMainBinding.increaseCounterButton.setOnClickListener {
+            activityMainBinding.counter = activityMainBinding.counter?.plus(1)
+        }
+    }
+
+    private suspend fun downloadData() {
+        for (i in 1..100000) {
+            withContext(Dispatchers.Main) {
+                activityMainBinding.textViewMessage.text =
+                    "Downloading user $i in ${Thread.currentThread().name}."
+            }
+        }
     }
 }
