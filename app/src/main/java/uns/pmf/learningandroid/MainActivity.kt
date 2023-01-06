@@ -1,41 +1,59 @@
 package uns.pmf.learningandroid
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.Action
 import uns.pmf.learningandroid.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var activityMainBinding: ActivityMainBinding
+    private var notificationManager: NotificationManager? = null
+    private val channelId = "uns.pmf.learningandroid.channel1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(activityMainBinding.root)
 
-        activityMainBinding.counter = 0
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        createNotificationChannel(channelId, "Channel Name", "Channel Description")
 
-        activityMainBinding.downloadDataButton.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                downloadData()
-            }
-        }
-
-        activityMainBinding.increaseCounterButton.setOnClickListener {
-            activityMainBinding.counter = activityMainBinding.counter?.plus(1)
+        activityMainBinding.showNotificationButton.setOnClickListener {
+            showNotification()
         }
     }
 
-    private suspend fun downloadData() {
-        for (i in 1..100000) {
-            withContext(Dispatchers.Main) {
-                activityMainBinding.textViewMessage.text =
-                    "Downloading user $i in ${Thread.currentThread().name}."
-            }
+    private fun showNotification() {
+        val newActivityIntent = Intent(this, NewActivity::class.java)
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, newActivityIntent, PendingIntent.FLAG_IMMUTABLE)
+        val action: Action = Action.Builder(0, "Action", pendingIntent).build()
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setContentTitle("Title")
+            .setContentText("Text")
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            //.setContentIntent(pendingIntent)
+            .addAction(action)
+            .build()
+        notificationManager?.notify(2023, notification)
+    }
+
+    private fun createNotificationChannel(id: String, name: String, description: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val notificationChannel = NotificationChannel(id, name, importance)
+            notificationChannel.description = description
+            notificationManager?.createNotificationChannel(notificationChannel)
         }
     }
 }
